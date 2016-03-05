@@ -67,7 +67,7 @@ $font: 'Raleway', sans-serif;
     &:hover {
       flex: 18;
       h1 {
-        font-size: 9em;
+        font-size: 9.5em;
       }
       h2, h3 {
         @include opacity-delay;
@@ -173,7 +173,8 @@ section {
   }
   article {
     position: relative;
-    overflow: auto;
+    overflow: hidden;
+    overflow-y: auto;
     width: 100%;
     h2 {
       font-size: 5em;
