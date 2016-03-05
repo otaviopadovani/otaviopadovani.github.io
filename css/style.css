@@ -1,0 +1,276 @@
+@keyframes coloring {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+* {
+  padding: 0;
+  margin: 0;
+  outline: none; }
+
+a {
+  color: white;
+  text-decoration: none; }
+
+li {
+  list-style: none; }
+
+body {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  overflow: auto; }
+  body aside {
+    flex: 6; }
+    body aside:hover {
+      flex: 18; }
+      body aside:hover h1 {
+        font-size: 9em; }
+      body aside:hover h2, body aside:hover h3 {
+        opacity: 1;
+        transition-delay: .5s; }
+  body section:before {
+    opacity: 0; }
+  body section article {
+    display: none; }
+  body section:hover {
+    flex: 20;
+    align-items: stretch;
+    justify-content: flex-start; }
+    body section:hover:before {
+      animation: coloring 2.5s;
+      opacity: 0; }
+    body section:hover h1 {
+      font-size: 9em; }
+    body section:hover i {
+      display: none; }
+    body section:hover article {
+      display: block; }
+  body * {
+    transition: .5s all;
+    transition-delay: .15s; }
+
+aside h1, aside h2, aside h3 {
+  padding: 0 8%; }
+
+aside h2,
+aside h3 {
+  opacity: 0;
+  transition: .2s all; }
+
+aside {
+  background: #333; }
+  aside h1 {
+    background: none;
+    color: #27fdf5;
+    background: -webkit-linear-gradient(#27fdf5, #f765b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3em;
+    font-weight: 900;
+    letter-spacing: -.07em;
+    word-spacing: 20em;
+    line-height: .75em;
+    padding: 8% 8% 0 8%; }
+  aside h2 {
+    font-size: 2em;
+    color: #f765b8;
+    padding: 3% 8%; }
+  aside h3 {
+    font-size: .9em;
+    font-weight: 400;
+    color: #27fdf5; }
+
+section {
+  display: flex;
+  flex: 2;
+  align-items: center;
+  justify-content: center; }
+  section i {
+    opacity: 1; }
+  section article {
+    position: relative;
+    overflow: auto;
+    width: 100%; }
+    section article h2 {
+      font-size: 5em;
+      padding: 2% 5%; }
+    section article blockquote {
+      position: relative;
+      width: 100%;
+      padding: 2%;
+      margin: 0 0 5% 0;
+      margin-left: -2%;
+      transform: rotate(-2deg); }
+      section article blockquote p {
+        position: relative;
+        z-index: 2;
+        padding: 0 5%; }
+    section article ol {
+      display: flex;
+      position: relative;
+      padding: 2%;
+      z-index: 3; }
+    section article li {
+      justify-content: space-between;
+      width: 50%;
+      margin: 2%; }
+    section article dl {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap; }
+    section article dt {
+      width: 100%; }
+      section article dt b {
+        background: none;
+        color: white;
+        background: -webkit-linear-gradient(#aa52ff, #f765b8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0 10px 0 0; }
+    section article dd {
+      justify-content: space-around;
+      padding: 2%;
+      margin: 1%;
+      font-size: .9em; }
+
+.about {
+  position: relative;
+  background: #27fdf5; }
+  .about:before {
+    background: #27fdf5;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none; }
+  .about article h2 {
+    text-shadow: 10px 5px 0 #aa52ff; }
+  .about blockquote {
+    background: #aa52ff; }
+  .about dd {
+    color: #aa52ff;
+    border: 1px solid #aa52ff; }
+
+.jobs {
+  position: relative;
+  background: #f765b8; }
+  .jobs:before {
+    background: #f765b8;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none; }
+  .jobs article h2 {
+    text-shadow: 10px 5px 0 #27fdf5; }
+  .jobs blockquote {
+    background: #27fdf5; }
+  .jobs dd {
+    color: #27fdf5;
+    border: 1px solid #27fdf5; }
+
+.contact {
+  position: relative;
+  background: #aa52ff; }
+  .contact:before {
+    background: #aa52ff;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none; }
+  .contact article h2 {
+    text-shadow: 10px 5px 0 #f765b8; }
+  .contact blockquote {
+    background: #f765b8; }
+  .contact dd {
+    color: #f765b8;
+    border: 1px solid #f765b8; }
+
+/* Jobs */
+.jobs ul {
+  display: flex;
+  width: 90%;
+  padding: 0 5%;
+  flex-wrap: wrap; }
+.jobs li {
+  flex: 1; }
+  .jobs li header {
+    position: relative;
+    overflow: hidden; }
+  .jobs li img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 120%;
+    margin-left: -60%;
+    z-index: 1;
+    transform-origin: top; }
+  .jobs li h3 {
+    background: linear-gradient(to bottom, rgba(231, 56, 39, 0) 0%, #f765b8 100%);
+    position: relative;
+    font-size: 1.5em;
+    padding: 50% 5% 0 5%;
+    z-index: 3;
+    transform: scale(1.02, 1.02); }
+  .jobs li time, .jobs li p, .jobs li dd {
+    font-size: .8em; }
+  .jobs li time {
+    font-style: italic;
+    padding: 0 5%; }
+  .jobs li p {
+    padding: 5%; }
+  .jobs li dl {
+    padding: 0 5%; }
+  .jobs li dd {
+    color: white;
+    border: 1px solid white; }
+  .jobs li:hover {
+    transform: scale(1.1, 1.1); }
+    .jobs li:hover img {
+      transform: scale(1.15, 1.15); }
+
+/* contact */
+.contact div {
+  display: flex;
+  justify-content: space-around;
+  padding: 10% 0 0 0; }
+.contact a {
+  color: #aa52ff;
+  text-align: center; }
+  .contact a:before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: none;
+    color: #aa52ff;
+    font-size: 4em;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 80px auto;
+    border-radius: 50%; }
+  .contact a:hover {
+    color: white; }
+    .contact a:hover:before {
+      transform: scale(1.4, 1.4); }
+.contact .fa-phone:before {
+  background: linear-gradient(#F8E97E, #3DB8C4); }
+.contact .fa-linkedin:before {
+  background: linear-gradient(#FFB627, #27fdf5); }
+.contact .fa-envelope:before {
+  background: linear-gradient(#FFC46B, #2DCC63); }
+
+/*# sourceMappingURL=style.css.map */
