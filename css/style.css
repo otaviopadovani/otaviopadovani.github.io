@@ -18,6 +18,7 @@ a {
 li {
   list-style: none; }
 
+/* Mobile first :) and DRY */
 body {
   position: static;
   display: flex;
@@ -259,7 +260,7 @@ dl {
         margin: 0 auto 70px auto;
         border-radius: 50%; }
 
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   body {
     position: fixed;
     flex-direction: row; }
