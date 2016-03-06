@@ -19,49 +19,21 @@ li {
   list-style: none; }
 
 body {
-  position: fixed;
+  position: static;
   display: flex;
-  width: 100%;
-  height: 100%;
   color: white;
   font-family: "Raleway", sans-serif;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
   overflow: auto; }
-  body aside {
-    flex: 6; }
-    body aside h2, body aside h3 {
-      opacity: 0; }
-    body aside:hover {
-      flex: 18; }
-      body aside:hover h1 {
-        font-size: 9.5em; }
-      body aside:hover h2, body aside:hover h3 {
-        opacity: 1;
-        transition-delay: .5s; }
-  body section:before {
-    opacity: 0; }
-  body section article {
-    display: none; }
-  body section:hover {
-    flex: 20;
-    align-items: stretch;
-    justify-content: flex-start; }
-    body section:hover:before {
-      animation: opacityToZero 2.5s;
-      opacity: 0; }
-    body section:hover h1 {
-      font-size: 9em; }
-    body section:hover i {
-      display: none; }
-    body section:hover article {
-      display: flex; }
-  body * {
-    transition: .5s all; }
 
 h2 {
-  padding: 4%; }
+  padding: 14.4% 8%; }
 
 aside {
-  background: #333; }
+  background: #333;
+  padding: 32% 0; }
   aside h1 {
     background: none;
     color: #27fdf5;
@@ -73,29 +45,45 @@ aside {
     letter-spacing: -.07em;
     word-spacing: 20em;
     line-height: .75em;
+    position: relative;
     padding: 8%;
-    padding-bottom: 0; }
+    padding-bottom: 150px;
+    text-indent: -9999px; }
+    aside h1:before {
+      background: none;
+      color: #27fdf5;
+      background: -webkit-linear-gradient(#27fdf5, #f765b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; }
+    aside h1:before {
+      content: 'OP';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      font-size: 5em;
+      letter-spacing: -.2em;
+      line-height: .8em;
+      width: 282px;
+      margin: 0 0 0 -141px;
+      text-indent: 0; }
   aside h2 {
     color: #f765b8;
-    font-size: 2em;
-    padding: 4% 8%; }
+    font-size: 1.6em;
+    padding: 8%;
+    text-align: center; }
   aside h3 {
     color: #27fdf5;
     font-size: .9em;
     font-weight: 400;
-    padding: 0 8%; }
+    padding: 0 8%;
+    text-align: center; }
 
 section {
   display: flex;
-  flex: 2;
-  align-items: center;
-  justify-content: center; }
+  flex: 2; }
   section header {
     flex: 1;
     overflow: hidden; }
-    section header h2 {
-      color: white;
-      font-size: 5em; }
     section header blockquote {
       position: relative;
       width: 96%;
@@ -103,23 +91,21 @@ section {
       margin-left: -2%;
       padding: 4%;
       transform: rotate(-2deg); }
+    section header h2 {
+      color: white;
+      font-size: 4em; }
+    section header blockquote p {
+      padding-bottom: 10px; }
+  section:before {
+    display: none; }
+
+i {
+  display: none !important; }
 
 article {
-  display: flex;
-  flex-flow: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  position: relative;
-  overflow: hidden;
-  overflow-y: auto;
   width: 100%; }
-  article header {
-    flex: 1; }
   article ol, article ul, article nav {
-    display: flex;
-    flex: 10; }
-  article li, article a {
-    flex: 1; }
+    margin-top: 8%; }
 
 ol li {
   display: flex;
@@ -129,10 +115,10 @@ ol li {
 
 dl {
   flex-wrap: wrap;
-  padding: 0 8%; }
+  margin: 8% 0;
+  text-align: center; }
   dl dt {
-    width: 100%;
-    padding: 0 2%; }
+    width: 100%; }
     dl dt b {
       background: none;
       color: white;
@@ -143,13 +129,13 @@ dl {
       padding: 1px 0 0 0; }
   dl dd {
     display: inline-block;
-    font-size: .9em;
     padding: 2%;
     margin: 2%; }
 
 .about {
   position: relative;
-  background: #27fdf5; }
+  background: #27fdf5;
+  position: relative; }
   .about:before {
     background: #27fdf5;
     content: '';
@@ -190,7 +176,7 @@ dl {
     border: 1px solid #27fdf5; }
   .jobs ul {
     flex-wrap: wrap;
-    padding: 0 2%; }
+    padding: 12% 2%; }
   .jobs li {
     flex: 1;
     margin: 0 2%; }
@@ -208,7 +194,7 @@ dl {
     .jobs li h3 {
       background: linear-gradient(to bottom, transparent 0%, #f765b8 100%);
       position: relative;
-      font-size: 1.5em;
+      font-size: 1.3em;
       padding: 50% 5% 0 5%;
       z-index: 3;
       transform: scale(1.02, 1.02); }
@@ -220,15 +206,16 @@ dl {
     .jobs li p {
       padding: 4%; }
     .jobs li dl {
+      text-align: left;
+      margin: 0 2%;
+      margin-bottom: 8%;
       padding: 0; }
+    .jobs li dt {
+      padding-top: 8%; }
     .jobs li dd {
       color: white;
+      font-size: .75em;
       border: 1px solid white; }
-    .jobs li:hover {
-      transform: scale(1.1, 1.1);
-      z-index: 10; }
-      .jobs li:hover img {
-        transform: scale(1.15, 1.15); }
 
 .contact {
   position: relative;
@@ -252,24 +239,152 @@ dl {
     border: 1px solid #f765b8; }
   .contact nav {
     display: flex;
-    align-items: center; }
-  .contact a {
-    color: #aa52ff;
-    text-align: center; }
-    .contact a:before {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      float: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 0 8% 0; }
+    .contact nav a {
       color: #aa52ff;
-      font-size: 4em;
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 80px auto;
-      border-radius: 50%; }
-    .contact a:hover {
-      color: white; }
-      .contact a:hover:before {
-        transform: scale(1.4, 1.4); }
+      margin: 16% 0 0 0; }
+      .contact nav a:before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: none;
+        color: #aa52ff;
+        font-size: 5em;
+        width: 3.57143em;
+        height: 3.57143em;
+        margin: 0 auto 70px auto;
+        border-radius: 50%; }
+
+@media (min-width: 600px) {
+  body {
+    position: fixed;
+    flex-direction: row; }
+    body aside {
+      flex: 6; }
+      body aside h2, body aside h3 {
+        opacity: 0; }
+      body aside:hover {
+        flex: 18; }
+        body aside:hover h1 {
+          font-size: 9.5em; }
+        body aside:hover h2, body aside:hover h3 {
+          opacity: 1;
+          transition-delay: .5s; }
+    body section:before {
+      opacity: 0; }
+    body section article {
+      display: none; }
+    body section:hover {
+      flex: 20;
+      align-items: stretch;
+      justify-content: flex-start; }
+      body section:hover:before {
+        animation: opacityToZero 2.5s;
+        opacity: 0; }
+      body section:hover h1 {
+        font-size: 9em; }
+      body section:hover i {
+        display: none !important; }
+      body section:hover article {
+        display: flex; }
+    body * {
+      transition: .5s all; }
+
+  h2 {
+    padding: 4%; }
+
+  aside {
+    padding: 0; }
+    aside h1 {
+      padding-bottom: 0;
+      text-indent: 0; }
+      aside h1:before {
+        display: none; }
+    aside h2 {
+      font-size: 2em;
+      text-align: left;
+      padding: 4% 8%; }
+    aside h3 {
+      text-align: left; }
+
+  section {
+    align-items: center;
+    justify-content: center; }
+    section header h2 {
+      font-size: 5em; }
+    section header blockquote p {
+      padding-bottom: 0; }
+    section:before {
+      display: block; }
+
+  i {
+    display: inline-block !important; }
+
+  article {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 100%; }
+    article header {
+      flex: 1; }
+    article ol, article ul, article nav {
+      display: flex;
+      flex: 10;
+      margin-top: 0; }
+    article li, article a {
+      flex: 1; }
+
+  dl {
+    padding: 0 8%;
+    margin: 0;
+    text-align: left; }
+    dl dt {
+      font-size: 1em;
+      padding: 0 2%; }
+    dl dd {
+      font-size: .9em; }
+
+  .jobs ul {
+    padding: 0 2%;
+    padding-top: 4%; }
+  .jobs li p {
+    padding: 0; }
+  .jobs li dl {
+    margin: 8% 0; }
+  .jobs li:hover {
+    transform: scale(1.1, 1.1);
+    z-index: 10; }
+    .jobs li:hover img {
+      transform: scale(1.15, 1.15); }
+
+  .contact nav {
+    flex-direction: row; }
+    .contact nav a {
+      color: #aa52ff;
+      margin: 0;
+      text-align: center; }
+      .contact nav a:before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: none;
+        color: #aa52ff;
+        font-size: 4em;
+        width: 2.85714em;
+        height: 2.85714em;
+        margin: 0 auto 70px auto;
+        border-radius: 50%; }
+      .contact nav a:hover {
+        color: white; }
+        .contact nav a:hover:before {
+          transform: scale(1.4, 1.4); } }
 
 /*# sourceMappingURL=style.css.map */
