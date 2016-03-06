@@ -1,0 +1,131 @@
+@mixin opacity-delay {
+  opacity: 1;
+  transition-delay: .5s;
+}
+
+@mixin transparent-background ($firstColor) {
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, $firstColor 100%);
+}
+
+@mixin text-gradient ($firstColor, $secondColor, $colorFallback, $bgFallback) {
+  background: $bgFallback;
+  color: $colorFallback;
+  background: -webkit-linear-gradient($firstColor, $secondColor);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin color-animation ($color) {
+  background: $color;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@mixin color-scheme ($mainColor, $accentColor) {
+  position: relative;
+  background: $mainColor;
+  &:before {
+    @include color-animation($mainColor);
+  }
+  h2 {
+    text-shadow: 10px 5px 0 $accentColor;
+  }
+  blockquote {
+    background: $accentColor;
+  }
+
+  dd {
+    color: $accentColor;
+    border: 1px solid $accentColor;
+  }
+}
+
+@mixin blockquote ($degree) {
+  blockquote {
+    position: relative;
+    width: 96%;
+    margin: -$standardPadding 0 $minimumPadding 0;
+    margin-left: -$minimumPadding;
+    padding: $standardPadding;
+    transform: rotate($degree);
+  }
+}
+
+@mixin logo ($firstColor, $secondColor, $colorFallback, $bgFallback) {
+  @include text-gradient ($firstColor, $secondColor, $colorFallback, $bgFallback);
+  font-size: 3em;
+  font-weight: 900;
+  letter-spacing: -.07em;
+  word-spacing: 20em;
+  line-height: .75em;
+  &:before {
+    @include text-gradient ($firstColor, $secondColor, $colorFallback, $bgFallback);
+  }
+}
+
+@mixin contact-link ($size) {
+  color: $purple;
+  &:before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: none;
+    color: $purple;
+    font-size: $size;
+    width: $size/1.4;
+    height: $size/1.4;
+    margin: 0 auto 70px auto;
+    border-radius: 50%;
+  }
+}
+
+@mixin expandable {
+  aside {
+    flex: 6;
+    h2, h3 {
+      opacity: 0;
+    }
+    &:hover {
+      flex: 18;
+      h1 {
+        font-size: 9.5em;
+      }
+      h2, h3 {
+        @include opacity-delay;
+      }
+    }
+  }
+
+  section {
+    &:before {
+      opacity: 0;
+    }
+    article {
+      display: none;
+    }
+    &:hover {
+      flex: 20;
+      align-items: stretch;
+      justify-content: flex-start;
+      &:before {
+        animation: opacityToZero 2.5s;
+        opacity: 0;
+      }
+      h1 {
+        font-size: 9em;
+      }
+      i {
+        display: none !important;
+      }
+      article {
+        display: flex;
+      }
+    } 
+  }
+}

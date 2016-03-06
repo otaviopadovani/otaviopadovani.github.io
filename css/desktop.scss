@@ -1,0 +1,127 @@
+body {
+  @include expandable;
+  position: fixed;
+  flex-direction: row;
+  * {
+    transition: .5s all;
+  }
+}
+
+h2 {
+  padding: $standardPadding;
+}
+
+aside {
+  padding: 0;
+  h1 {
+    padding-bottom: 0;
+    text-indent: 0;
+    &:before {
+      display: none;
+    }
+  }
+  h2 {
+    font-size: 2em;
+    text-align: left;
+    padding: $standardPadding $maxPadding;
+  }
+  h3 {
+    text-align: left;
+  }
+}
+
+section {
+  align-items: center;
+  justify-content: center;
+  header {
+    h2 {
+      font-size: 5em;
+    }
+    blockquote {
+      p {
+        padding-bottom: 0;
+      }
+    }
+  }
+  &:before {
+    display: block;
+  }
+}
+
+i {
+  display: inline-block !important;
+}
+
+article {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+  header {
+    flex: 1;
+  }
+  ol, ul, nav {
+    display: flex;
+    flex: 10;
+    margin-top: 0;
+  }
+  li, a {
+    flex: 1;
+  }
+}
+
+dl {
+  padding: 0 $maxPadding;
+  margin: 0;
+  text-align: left;
+  dt {
+    font-size: 1em;
+    padding: 0 $minimumPadding;
+  }
+  dd {
+    font-size: .9em;
+  }
+}
+
+.jobs {
+  ul {
+    padding: 0 $minimumPadding;
+    padding-top: $standardPadding;
+  }
+  li {
+    p {
+      padding: 0;
+    }
+    dl {
+      margin: $maxPadding 0;
+    }
+    &:hover {
+      transform: scale(1.1, 1.1);
+      z-index: 10;
+      img {
+        transform: scale(1.15, 1.15);
+      }
+    }
+  }
+}
+
+.contact {
+  nav {
+    flex-direction: row;
+    a {
+      @include contact-link(4em);
+      margin: 0;
+      text-align: center;
+      &:hover {
+        color: white;
+        &:before {
+          transform: scale(1.4, 1.4)
+        }
+      }
+    }
+  }
+}

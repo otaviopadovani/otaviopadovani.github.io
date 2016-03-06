@@ -1,0 +1,197 @@
+body {
+  position: static;
+  display: flex;
+  color: white;
+  font-family: $font;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+h2 {
+  padding: $maxPadding*1.8 $maxPadding;
+}
+
+aside {
+  background: #333;
+  padding: $maxPadding*4 0;
+  h1 {
+    @include logo($blue, $pink, $blue, none);
+    position: relative;
+    padding: $maxPadding;
+    padding-bottom: 150px;
+    text-indent: -9999px;
+    &:before {
+      content: 'OP';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      font-size: 5em;
+      letter-spacing: -.2em;
+      line-height: .8em;
+      width: 282px;
+      margin: 0 0 0 -141px;
+      text-indent: 0;
+    }
+  }
+  h2 {
+    color: $pink;
+    font-size: 1.6em;
+    padding: $maxPadding;
+    text-align: center;
+  }
+  h3 {
+    color: $blue;
+    font-size: .9em;
+    font-weight: 400;
+    padding: 0 $maxPadding;
+    text-align: center;
+  }
+}
+
+section {
+  display: flex;
+  flex: 2;
+  header {
+    @include blockquote(-2deg);
+    flex: 1;
+    overflow: hidden;
+    h2 {
+      color: white;
+      font-size: 4em;
+    }
+    blockquote {
+      p {
+        padding-bottom: 10px;
+      }
+    }
+  }
+  &:before {
+    display: none;
+  }
+}
+
+i {
+  display: none !important;
+}
+
+article {
+  width: 100%;
+  ol, ul, nav {
+    margin-top: $maxPadding;
+  }
+}
+
+ol {
+  li {
+    display: flex;
+    align-items: center;
+    dl {
+      min-height: 280px;
+    }
+  }
+}
+
+dl {
+  flex-wrap: wrap;
+  margin: $maxPadding 0;
+  text-align: center;
+  dt {
+    width: 100%;
+    b {
+      @include text-gradient ($purple, $pink, white, none);
+      margin: 0 $standardPadding 0 0;
+      padding: 1px 0 0 0;
+    }
+  }
+  dd {
+    display: inline-block;
+    padding: $minimumPadding;
+    margin: $minimumPadding;
+  }
+}
+
+.about {
+  @include color-scheme($blue, $purple);
+  position: relative;
+}
+
+.jobs {
+  @include color-scheme($pink, $blue);
+  ul {
+    flex-wrap: wrap;
+    padding: $maxPadding*1.5 $minimumPadding;
+  }
+  li {
+    flex: 1;
+    margin: 0 $minimumPadding;
+    header {
+      position: relative;
+      overflow: hidden;
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 120%;
+      margin-left: -60%;
+      z-index: 1;
+      transform-origin: top;
+    }
+    h3 {
+      @include transparent-background (rgba(247,101,184,1));
+      position: relative;
+      font-size: 1.3em;
+      padding: 50% 5% 0 5%;
+      z-index: 3;
+      transform: scale(1.02, 1.02);
+    }
+    time, p, dd {
+      font-size: .8em;
+    }
+    time {
+      font-style: italic;
+      padding: $standardPadding;
+    }
+    p {
+      padding: $standardPadding;
+    }
+    dl {
+      text-align: left;
+      margin: 0 $minimumPadding;
+      margin-bottom: $maxPadding;
+      padding: 0;
+    }
+    dt {
+      padding-top: $maxPadding;
+    }
+    dd {
+      color: white;
+      font-size: .75em;
+      border: 1px solid white;
+    }
+  }
+}
+
+.contact {
+  @include color-scheme($purple, $pink);
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 0 $maxPadding 0;
+    a {
+      @include contact-link(5em);
+      margin: $maxPadding*2 0 0 0;
+    }
+  }
+
+  .fa-phone, .fa-linkedin, .fa-envelope {
+    &:before {
+      @extend .contact-gradient;
+    }
+  }
+}
