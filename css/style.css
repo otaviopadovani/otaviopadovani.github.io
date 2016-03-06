@@ -260,7 +260,7 @@ dl {
         margin: 0 auto 70px auto;
         border-radius: 50%; }
 
-@media (min-width: 800px) {
+@media only screen and (min-width: 800px) {
   body {
     position: fixed;
     flex-direction: row; }

@@ -8,6 +8,6 @@
 
 @import 'general'; //http://otaviopadovani.com/css/general.scss
 
-@media (min-width: 800px) {
+@media only screen and (min-width: 800px) {
   @import 'desktop'; //http://otaviopadovani.com/css/desktop.scss
 }
