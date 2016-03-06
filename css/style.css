@@ -1,4 +1,7 @@
-@keyframes coloring {
+.contact-gradient, .contact .fa-phone:before, .contact .fa-linkedin:before, .contact .fa-envelope:before {
+  background: linear-gradient(#FFC46B, #2DCC63); }
+
+@keyframes opacityToZero {
   0% {
     opacity: 1; }
   100% {
@@ -25,6 +28,8 @@ body {
   overflow: auto; }
   body aside {
     flex: 6; }
+    body aside h2, body aside h3 {
+      opacity: 0; }
     body aside:hover {
       flex: 18; }
       body aside:hover h1 {
@@ -41,25 +46,19 @@ body {
     align-items: stretch;
     justify-content: flex-start; }
     body section:hover:before {
-      animation: coloring 2.5s;
+      animation: opacityToZero 2.5s;
       opacity: 0; }
     body section:hover h1 {
       font-size: 9em; }
     body section:hover i {
       display: none; }
     body section:hover article {
-      display: block; }
+      display: flex; }
   body * {
-    transition: .5s all;
-    transition-delay: .15s; }
+    transition: .5s all; }
 
-aside h1, aside h2, aside h3 {
-  padding: 0 8%; }
-
-aside h2,
-aside h3 {
-  opacity: 0;
-  transition: .2s all; }
+h2 {
+  padding: 4%; }
 
 aside {
   background: #333; }
@@ -74,69 +73,79 @@ aside {
     letter-spacing: -.07em;
     word-spacing: 20em;
     line-height: .75em;
-    padding: 8% 8% 0 8%; }
+    padding: 8%;
+    padding-bottom: 0; }
   aside h2 {
-    font-size: 2em;
     color: #f765b8;
-    padding: 3% 8%; }
+    font-size: 2em;
+    padding: 4% 8%; }
   aside h3 {
+    color: #27fdf5;
     font-size: .9em;
     font-weight: 400;
-    color: #27fdf5; }
+    padding: 0 8%; }
 
 section {
   display: flex;
   flex: 2;
   align-items: center;
   justify-content: center; }
-  section i {
-    opacity: 1; }
-  section article {
-    position: relative;
-    overflow: hidden;
-    overflow-y: auto;
-    width: 100%; }
-    section article h2 {
-      font-size: 5em;
-      padding: 2% 5%; }
-    section article blockquote {
+  section header {
+    flex: 1;
+    overflow: hidden; }
+    section header h2 {
+      color: white;
+      font-size: 5em; }
+    section header blockquote {
       position: relative;
-      width: 100%;
-      padding: 2%;
-      margin: 0 0 5% 0;
+      width: 96%;
+      margin: -4% 0 2% 0;
       margin-left: -2%;
+      padding: 4%;
       transform: rotate(-2deg); }
-      section article blockquote p {
-        position: relative;
-        z-index: 2;
-        padding: 0 5%; }
-    section article ol {
-      display: flex;
-      position: relative;
-      padding: 2%;
-      z-index: 3; }
-    section article li {
-      justify-content: space-between;
-      width: 50%;
-      margin: 2%; }
-    section article dl {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap; }
-    section article dt {
-      width: 100%; }
-      section article dt b {
-        background: none;
-        color: white;
-        background: -webkit-linear-gradient(#aa52ff, #f765b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin: 0 10px 0 0; }
-    section article dd {
-      justify-content: space-around;
-      padding: 2%;
-      margin: 1%;
-      font-size: .9em; }
+
+article {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%; }
+  article header {
+    flex: 1; }
+  article ol, article ul, article nav {
+    display: flex;
+    flex: 10; }
+  article li, article a {
+    flex: 1; }
+
+ol li {
+  display: flex;
+  align-items: center; }
+  ol li dl {
+    min-height: 280px; }
+
+dl {
+  flex-wrap: wrap;
+  padding: 0 8%; }
+  dl dt {
+    width: 100%;
+    padding: 0 2%; }
+    dl dt b {
+      background: none;
+      color: white;
+      background: -webkit-linear-gradient(#aa52ff, #f765b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 4% 0 0;
+      padding: 1px 0 0 0; }
+  dl dd {
+    display: inline-block;
+    font-size: .9em;
+    padding: 2%;
+    margin: 2%; }
 
 .about {
   position: relative;
@@ -151,7 +160,7 @@ section {
     height: 100%;
     z-index: 5;
     pointer-events: none; }
-  .about article h2 {
+  .about h2 {
     text-shadow: 10px 5px 0 #aa52ff; }
   .about blockquote {
     background: #aa52ff; }
@@ -172,13 +181,54 @@ section {
     height: 100%;
     z-index: 5;
     pointer-events: none; }
-  .jobs article h2 {
+  .jobs h2 {
     text-shadow: 10px 5px 0 #27fdf5; }
   .jobs blockquote {
     background: #27fdf5; }
   .jobs dd {
     color: #27fdf5;
     border: 1px solid #27fdf5; }
+  .jobs ul {
+    flex-wrap: wrap;
+    padding: 0 2%; }
+  .jobs li {
+    flex: 1;
+    margin: 0 2%; }
+    .jobs li header {
+      position: relative;
+      overflow: hidden; }
+    .jobs li img {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 120%;
+      margin-left: -60%;
+      z-index: 1;
+      transform-origin: top; }
+    .jobs li h3 {
+      background: linear-gradient(to bottom, transparent 0%, #f765b8 100%);
+      position: relative;
+      font-size: 1.5em;
+      padding: 50% 5% 0 5%;
+      z-index: 3;
+      transform: scale(1.02, 1.02); }
+    .jobs li time, .jobs li p, .jobs li dd {
+      font-size: .8em; }
+    .jobs li time {
+      font-style: italic;
+      padding: 4%; }
+    .jobs li p {
+      padding: 4%; }
+    .jobs li dl {
+      padding: 0; }
+    .jobs li dd {
+      color: white;
+      border: 1px solid white; }
+    .jobs li:hover {
+      transform: scale(1.1, 1.1);
+      z-index: 10; }
+      .jobs li:hover img {
+        transform: scale(1.15, 1.15); }
 
 .contact {
   position: relative;
@@ -193,85 +243,33 @@ section {
     height: 100%;
     z-index: 5;
     pointer-events: none; }
-  .contact article h2 {
+  .contact h2 {
     text-shadow: 10px 5px 0 #f765b8; }
   .contact blockquote {
     background: #f765b8; }
   .contact dd {
     color: #f765b8;
     border: 1px solid #f765b8; }
-
-/* Jobs */
-.jobs ul {
-  display: flex;
-  width: 90%;
-  padding: 0 5%;
-  flex-wrap: wrap; }
-.jobs li {
-  flex: 1; }
-  .jobs li header {
-    position: relative;
-    overflow: hidden; }
-  .jobs li img {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 120%;
-    margin-left: -60%;
-    z-index: 1;
-    transform-origin: top; }
-  .jobs li h3 {
-    background: linear-gradient(to bottom, rgba(231, 56, 39, 0) 0%, #f765b8 100%);
-    position: relative;
-    font-size: 1.5em;
-    padding: 50% 5% 0 5%;
-    z-index: 3;
-    transform: scale(1.02, 1.02); }
-  .jobs li time, .jobs li p, .jobs li dd {
-    font-size: .8em; }
-  .jobs li time {
-    font-style: italic;
-    padding: 0 5%; }
-  .jobs li p {
-    padding: 5%; }
-  .jobs li dl {
-    padding: 0 5%; }
-  .jobs li dd {
-    color: white;
-    border: 1px solid white; }
-  .jobs li:hover {
-    transform: scale(1.1, 1.1); }
-    .jobs li:hover img {
-      transform: scale(1.15, 1.15); }
-
-/* contact */
-.contact div {
-  display: flex;
-  justify-content: space-around;
-  padding: 10% 0 0 0; }
-.contact a {
-  color: #aa52ff;
-  text-align: center; }
-  .contact a:before {
+  .contact nav {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    float: none;
+    align-items: center; }
+  .contact a {
     color: #aa52ff;
-    font-size: 4em;
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 80px auto;
-    border-radius: 50%; }
-  .contact a:hover {
-    color: white; }
-    .contact a:hover:before {
-      transform: scale(1.4, 1.4); }
-.contact .fa-phone:before {
-  background: linear-gradient(#F8E97E, #3DB8C4); }
-.contact .fa-linkedin:before {
-  background: linear-gradient(#FFB627, #27fdf5); }
-.contact .fa-envelope:before {
-  background: linear-gradient(#FFC46B, #2DCC63); }
+    text-align: center; }
+    .contact a:before {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      float: none;
+      color: #aa52ff;
+      font-size: 4em;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 80px auto;
+      border-radius: 50%; }
+    .contact a:hover {
+      color: white; }
+      .contact a:hover:before {
+        transform: scale(1.4, 1.4); }
 
 /*# sourceMappingURL=style.css.map */

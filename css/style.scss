@@ -2,10 +2,17 @@ $pink: #f765b8;
 $blue: #27fdf5;
 $purple: #aa52ff;
 $font: 'Raleway', sans-serif;
+$standardPadding: 4%;
+$maxPadding: $standardPadding * 2;
+$minimumPadding: $standardPadding / 2;
 
 @mixin opacity-delay {
   opacity: 1;
   transition-delay: .5s;
+}
+
+@mixin transparent-background ($firstColor) {
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, $firstColor 100%);
 }
 
 @mixin text-gradient ($firstColor, $secondColor, $colorFallback, $bgFallback) {
@@ -28,42 +35,58 @@ $font: 'Raleway', sans-serif;
   pointer-events: none;
 }
 
-@keyframes coloring {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 @mixin color-scheme ($mainColor, $accentColor) {
   position: relative;
   background: $mainColor;
   &:before {
     @include color-animation($mainColor);
   }
-  article {
-    h2 {
-      text-shadow: 10px 5px 0 $accentColor;
-    }
+  h2 {
+    text-shadow: 10px 5px 0 $accentColor;
   }
   blockquote {
     background: $accentColor;
   }
+
   dd {
     color: $accentColor;
     border: 1px solid $accentColor;
   }
 }
 
-@mixin basic-padding {
-  padding: 0 8%;
+@mixin subtitle {
+  h2 {
+    color: white;
+    font-size: 5em;
+  }
+}
+
+@mixin blockquote ($degree) {
+  blockquote {
+    position: relative;
+    width: 96%;
+    margin: -$standardPadding 0 $minimumPadding 0;
+    margin-left: -$minimumPadding;
+    padding: $standardPadding;
+    transform: rotate($degree); 
+  }
+}
+
+@mixin logo ($firstColor, $secondColor, $colorFallback, $bgFallback) {
+  @include text-gradient ($firstColor, $secondColor, $colorFallback, $bgFallback);
+  font-size: 3em;
+  font-weight: 900;
+  letter-spacing: -.07em;
+  word-spacing: 20em;
+  line-height: .75em;
 }
 
 @mixin expandable {
   aside {
     flex: 6;
+    h2, h3 {
+      opacity: 0;
+    }
     &:hover {
       flex: 18;
       h1 {
@@ -87,7 +110,7 @@ $font: 'Raleway', sans-serif;
       align-items: stretch;
       justify-content: flex-start;
       &:before {
-        animation: coloring 2.5s;
+        animation: opacityToZero 2.5s;
         opacity: 0;
       }
       h1 {
@@ -97,9 +120,22 @@ $font: 'Raleway', sans-serif;
         display: none;
       }
       article {
-        display: block;
+        display: flex;
       }
     } 
+  }
+}
+
+.contact-gradient {
+  background: linear-gradient(#FFC46B, #2DCC63);
+}
+
+@keyframes opacityToZero {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -115,6 +151,7 @@ a {
 li {
   list-style: none;
 }
+
 body {
   @include expandable;
   position: fixed;
@@ -126,40 +163,30 @@ body {
   overflow: auto;
   * {
     transition: .5s all;
-    transition-delay: .15s;
-  }
-}
-aside {
-  h1, h2, h3 {
-    @include basic-padding;
   }
 }
 
-aside h2,
-aside h3 {
-  opacity: 0;
-  transition: .2s all;
+h2 {
+  padding: $standardPadding;
 }
+
 aside {
   background: #333;
   h1 {
-    @include text-gradient ($blue, $pink, $blue, none);
-    font-size: 3em;
-    font-weight: 900;
-    letter-spacing: -.07em;
-    word-spacing: 20em;
-    line-height: .75em;
-    padding: 8% 8% 0 8%;
+    @include logo($blue, $pink, $blue, none);
+    padding: $maxPadding;
+    padding-bottom: 0;
   }
   h2 {
-    font-size: 2em;
     color: $pink;
-    padding: 3% 8%;
+    font-size: 2em;
+    padding: $standardPadding $maxPadding;
   }
   h3 {
+    color: $blue;
     font-size: .9em;
     font-weight: 400;
-    color: $blue;
+    padding: 0 $maxPadding;
   }
 }
 
@@ -168,83 +195,78 @@ section {
   flex: 2;
   align-items: center;
   justify-content: center;
-  i {
-    opacity: 1;
-  }
-  article {
-    position: relative;
+  header {
+    @include subtitle;
+    @include blockquote(-2deg);
+    flex: 1;
     overflow: hidden;
-    overflow-y: auto;
-    width: 100%;
-    h2 {
-      font-size: 5em;
-      padding: 2% 5%;
-    }
-    blockquote {
-      position: relative;
-      width: 100%;
-      padding: 2%;
-      margin: 0 0 5% 0;
-      margin-left: -2%;
-      transform: rotate(-2deg);
-      p {
-        position: relative;
-        z-index: 2;
-        padding: 0 5%;
-      }
-    }
-    ol {
-      display: flex;
-      position: relative;
-      padding: 2%;
-      z-index: 3;
-    }
-    li {
-      justify-content: space-between;
-      width: 50%;
-      margin: 2%;
-    }
+  }
+}
+
+article {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+  header {
+    flex: 1;
+  }
+  ol, ul, nav {
+    display: flex;
+    flex: 10;
+  }
+  li, a {
+    flex: 1;
+  }
+}
+
+ol {
+  li {
+    display: flex;
+    align-items: center;
     dl {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
+      min-height: 280px;
     }
-    dt {
-      width: 100%;
-      b {
-        @include text-gradient ($purple, $pink, white, none);
-        margin: 0 10px 0 0;
-      }
+  }
+}
+
+dl {
+  flex-wrap: wrap;
+  padding: 0 $maxPadding;
+  dt {
+    width: 100%;
+    padding: 0 $minimumPadding;
+    b {
+      @include text-gradient ($purple, $pink, white, none);
+      margin: 0 $standardPadding 0 0;
+      padding: 1px 0 0 0;
     }
-    dd {
-      justify-content: space-around;
-      padding: 2%;
-      margin: 1%;
-      font-size: .9em;
-    }
+  }
+  dd {
+    display: inline-block;
+    font-size: .9em;
+    padding: $minimumPadding;
+    margin: $minimumPadding;
   }
 }
 
 .about {
   @include color-scheme($blue, $purple);
 }
+
 .jobs {
   @include color-scheme($pink, $blue);
-}
-.contact {
-  @include color-scheme($purple, $pink);
-}
-
-/* Jobs */
-.jobs {
   ul {
-    display: flex;
-    width: 90%;
-    padding: 0 5%;
     flex-wrap: wrap;
+    padding: 0 $minimumPadding;
   }
   li {
     flex: 1;
+    margin: 0 $minimumPadding;
     header {
       position: relative;
       overflow: hidden;
@@ -259,7 +281,7 @@ section {
       transform-origin: top;
     }
     h3 {
-      background: linear-gradient(to bottom, rgba(231,56,39,0) 0%, rgba(247,101,184,1) 100%);
+      @include transparent-background (rgba(247,101,184,1));
       position: relative;
       font-size: 1.5em;
       padding: 50% 5% 0 5%;
@@ -271,13 +293,13 @@ section {
     }
     time {
       font-style: italic;
-      padding: 0 5%;
+      padding: $standardPadding;
     }
     p {
-      padding: 5%;
+      padding: $standardPadding;
     }
     dl {
-      padding: 0 5%;
+      padding: 0;
     }
     dd {
       color: white;
@@ -285,6 +307,7 @@ section {
     }
     &:hover {
       transform: scale(1.1, 1.1);
+      z-index: 10;
       img {
         transform: scale(1.15, 1.15);
       }
@@ -292,12 +315,11 @@ section {
   }
 }
 
-/* contact */
 .contact {
-  div {
+  @include color-scheme($purple, $pink);
+  nav {
     display: flex;
-    justify-content: space-around;
-    padding: 10% 0 0 0;
+    align-items: center;
   }
   a {
     color: $purple;
@@ -321,19 +343,9 @@ section {
       }
     }
   }
-  .fa-phone {
+  .fa-phone, .fa-linkedin, .fa-envelope {
     &:before {
-      background: linear-gradient(#F8E97E, #3DB8C4);  
+      @extend .contact-gradient;
     }
   }
-  .fa-linkedin {
-    &:before {
-      background: linear-gradient(#FFB627, #27fdf5);
-    }
-  }
-  .fa-envelope {
-    &:before {
-      background: linear-gradient(#FFC46B, #2DCC63);
-    }
-  } 
 }
