@@ -83,8 +83,7 @@ section {
   display: flex;
   flex: 2; }
   section header {
-    flex: 1;
-    overflow: hidden; }
+    flex: 1; }
     section header blockquote {
       position: relative;
       width: 96%;
